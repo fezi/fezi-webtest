@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- standard build. 'mvn test' uses this file. -->
+
+<suite name="DefaultSuite">
+  
+  <listeners>
+    <listener class-name="fzi.webtest.config.RetryKnownExceptionFailures" />
+  </listeners>
+  
+  <test name="Threadsafe">
+    <classes>
+      <class name="fzi.webtest.tests.MyFirstTest"/>
+    </classes>
+  </test>
+
+  
+  
+</suite>
