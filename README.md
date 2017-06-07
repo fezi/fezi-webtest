@@ -9,7 +9,7 @@ like a separate long-time-support installation that you can get from
 <a href="https://ftp.mozilla.org/pub/firefox/releases/45.9.0esr/win64/en-US/Firefox%20Setup%2045.9.0esr.exe">here</a>.
 <br>
 It is recommended to disable its updates.
-Inconvenience is caused by Firefox new Marionette API not fully supported by Selenium drivers as of now.
+This inconvenience is caused by Firefox new Marionette/Gecko stuff recently introduced by Mozialla and not fully/conveniently supported by Selenium until now.
 
 
 ## Usage
