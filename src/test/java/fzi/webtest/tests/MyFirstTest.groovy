@@ -11,7 +11,6 @@ class MyFirstTest extends GebReportingTest {
    void firstTest() {
       MyFirstPage page = browser.to MyFirstPage
       assert page.myElement.displayed
-      println 'hurray'
    }
 
 }
