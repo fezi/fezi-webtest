@@ -11,19 +11,6 @@ import org.testng.annotations.Test
 class PlainGebScriptingExample {
 
    @Test
-   public void hijackVotingOfRockShop() {
-      Browser.drive {
-         go 'https://rockshop.de/RS/Band-Contest-2017/index.php'
-         //go 'https://www.rockshop.de/rock-shop-news/band-contest-2017#Voting'
-         def form = $('form', name: 'vote')
-         form.find('span', text: 'Sons Of Sounds').click()
-         form.find('input', type: 'submit').click()
-         Behavior.sleepSoundly(3000)
-         waitFor {$('strong').last().text().contains('Ihre Stimme wurde gez')}
-      }
-   }
-
-   @Test
    public void testGoogleSearch() {
       Browser.drive {
          go "http://google.com/ncr"

@@ -6,9 +6,7 @@ import geb.Module
 class SidebarModule extends Module {
 
    static content = {
-      sidebar { $(".wt-sidebar-area") }
-      sidemenu { sidebar.find("ul.side-nav") }
-      sidemenuAnchors { sidemenu.find("a") }
-      activeSidemenuAnchor { sidemenu.find("li.active").find('a') }
+      sidebar { $("#toc") }
+      sidemenuAnchors { sidebar.find("a") }
    }
 }

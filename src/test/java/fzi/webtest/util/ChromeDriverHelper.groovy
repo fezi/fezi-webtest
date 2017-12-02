@@ -54,9 +54,6 @@ public class ChromeDriverHelper {
          window.setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT))
       }
 
-      // Very long timeout to prevent false positives, because of external JS libraries
-      //chromeDriver.manage().timeouts().pageLoadTimeout(180, TimeUnit.SECONDS)
-
       configureModHeaderPlugin(chromeDriver)
 
       return chromeDriver
@@ -112,16 +109,11 @@ public class ChromeDriverHelper {
    static ChromeDriver configureModHeaderPlugin(ChromeDriver chromeDriver) {
       // Go to a page of the ModHeader extension
       chromeDriver.get("chrome-extension://idgpnmonknjnojddfkpgkljpfnnfcklj/icon.png")
-
-      // Write the config to the local storage. For changes, simply adjust the JSON string or export the profile of your local installation and paste it here (attention: Add the [] around the export!)
-      chromeDriver.executeScript("localStorage.setItem('profiles', '[{\"title\":\"Profile 1\",\"hideComment\":true,\"headers\":[{\"enabled\":true,\"name\":\"noconversion\",\"value\":\"1\",\"comment\":\"\"},{\"enabled\":true,\"name\":\"webtest\",\"value\":\"1\",\"comment\":\"\"}],\"respHeaders\":[],\"filters\":[],\"appendMode\":\"\"}]')")
-
+      // Write the config to the local storage
+      chromeDriver.executeScript("localStorage.setItem('profiles', '[{\"title\":\"Profile 1\",\"hideComment\":true,\"headers\":[{\"enabled\":true,\"name\":\"X-webtest\",\"value\":\"1\",\"comment\":\"\"}],\"respHeaders\":[],\"filters\":[],\"appendMode\":\"\"}]')")
       return chromeDriver
    }
 
-   /**
-    * Tries to look up propertyName in JVM properties first, OS env vars second and uses fallback if not found.
-    */
    static String readPropertyInOrder(String propertyName, String fallback) {
       String jvmProperty = System.getProperty(propertyName)
       String osProperty = System.getenv(propertyName)
