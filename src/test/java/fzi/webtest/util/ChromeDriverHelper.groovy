@@ -9,12 +9,11 @@ import org.openqa.selenium.remote.CapabilityType
 import org.openqa.selenium.remote.DesiredCapabilities
 
 public class ChromeDriverHelper {
-   public static final boolean IS_WINDOWS = OS.isFamilyWindows()
-   public static final boolean IS_MAC = OS.isFamilyMac()
-   public static final boolean IS_LINUX = !IS_MAC && OS.isFamilyUnix()
-
    static final int DESKTOP_HEIGHT = 1100
    static final int MOBILE_HEIGHT = 667 // consider setting to DESKTOP_HEIGHT if scrolling calls get tedious
+
+   static final int DESKTOP_WIDTH = 1420
+   static final int MOBILE_WIDTH = 337
 
    static final ThreadLocal<ChromeDriver> chromeDriver = new ThreadLocal<ChromeDriver>() {
       @Override
@@ -40,13 +39,7 @@ public class ChromeDriverHelper {
    }
 
    static ChromeDriver newChromeDriver(boolean isMobile) {
-      String chromeDriverBinary = "chromedriver"
-      if (IS_MAC) {
-         chromeDriverBinary = "chromedriver.mac"
-      } else if (IS_WINDOWS) {
-         chromeDriverBinary = "chromedriver.exe"
-      }
-      System.setProperty("webdriver.chrome.driver", chromeDriverBinary)
+      System.setProperty("webdriver.chrome.driver", getChromeBinary())
 
       DesiredCapabilities capabilities = DesiredCapabilities.chrome()
       capabilities.setCapability(CapabilityType.OVERLAPPING_CHECK_DISABLED, true)
@@ -56,9 +49,9 @@ public class ChromeDriverHelper {
 
       Window window = chromeDriver.manage().window()
       if (!isMobile) {
-         window.setSize(new Dimension(1420, DESKTOP_HEIGHT))
+         window.setSize(new Dimension(DESKTOP_WIDTH, DESKTOP_HEIGHT))
       } else {
-         window.setSize(new Dimension(337, MOBILE_HEIGHT))
+         window.setSize(new Dimension(MOBILE_WIDTH, MOBILE_HEIGHT))
       }
 
       // Very long timeout to prevent false positives, because of external JS libraries
@@ -69,8 +62,18 @@ public class ChromeDriverHelper {
       return chromeDriver
    }
 
+    private static String getChromeBinary() {
+        String chromeDriverBinary = "chromedriver" // Linux bin
+        if (OS.isFamilyMac()) {
+            chromeDriverBinary = "chromedriver.mac"
+        } else if (OS.isFamilyWindows()) {
+            chromeDriverBinary = "chromedriver.exe"
+        }
+        chromeDriverBinary
+    }
 
-   static ChromeOptions newChromeOptions(boolean isMobile) {
+
+    static ChromeOptions newChromeOptions(boolean isMobile) {
       // A new Chrome profile folder will be created in operatings systems temp folder. e.g. 'C:\Users\myUserName\AppData\Local\Temp\anonymous4018215231328960954webdriver-profile' on driver creation
       ChromeOptions options = new ChromeOptions()
 
@@ -85,7 +88,7 @@ public class ChromeDriverHelper {
 
       if (isMobile) {
          Map<String, String> deviceMetrics = new HashMap<String, Object>()
-         deviceMetrics.put("width", 337)
+         deviceMetrics.put("width", MOBILE_WIDTH)
          deviceMetrics.put("height", MOBILE_HEIGHT)
          deviceMetrics.put("pixelRatio", 1.0)
 

@@ -1,11 +1,10 @@
 package fzi.webtest.tests
 
 import fzi.webtest.pages.MyFirstPage
-import geb.testng.GebReportingTest
+import geb.testng.GebReportingTestTrait
 import org.testng.annotations.Test
 
-
-class MyFirstTest extends GebReportingTest {
+class MyFirstTest implements GebReportingTestTrait {
 
    @Test
    void firstTest() {

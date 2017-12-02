@@ -3,11 +3,11 @@ package fzi.webtest.tests
 import fzi.webtest.config.mobile.MobileConfigurationLoader
 import fzi.webtest.pages.MyFirstPage
 import geb.Configuration
-import geb.testng.GebReportingTest
+import geb.testng.GebReportingTestTrait
 import org.testng.annotations.Test
 
 
-class MyFirstMobileTest extends GebReportingTest {
+class MyFirstMobileTest implements GebReportingTestTrait {
 
    @Override
    public Configuration createConf() {
