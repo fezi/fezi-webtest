@@ -4,7 +4,7 @@ This is a project template for automated browser tests using
 - Maven
 - TestNG (JUnit, Cucumber, Spock would work as well)
 
-Latest versions as of 2018-12-02 are used.
+Latest versions as of 2017-12-02 are used.
 
 Geb supports DRY principle better than plain Selenium, avoiding maintenance hell.
 
