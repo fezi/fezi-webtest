@@ -1,6 +1,6 @@
-import fzi.webtest.util.ChromeDriverHelper
-import fzi.webtest.util.Constants
-import fzi.webtest.util.FirefoxDriverHelper
+import fezi.webtest.util.ChromeDriverHelper
+import fezi.webtest.util.Constants
+import fezi.webtest.util.FirefoxDriverHelper
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.ie.InternetExplorerDriver

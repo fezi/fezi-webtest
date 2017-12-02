@@ -7,7 +7,7 @@
 
     <test name="Threadsafe">
         <classes>
-            <class name="fzi.webtest.tests.MyFirstTest"/>
+            <class name="fezi.webtest.tests.MyFirstTest"/>
         </classes>
     </test>
 
