@@ -15,7 +15,7 @@ Latest versions as of 2017-12-02 are used.
 Following features where added (compared to more naked Geb projects):
 <li>Mixing Java 8 code with Groovy code is supported.
 <li>Mobile/responsive Website testing support: MyFirstMobileTest uses a UserAgent String and a window size typical smartphones.
-<li>geb-reports (html and jpg with current browser state - useful for debugging CI builds) survive 'mvn clean'
+<li>geb-reports (html and screenshot-png with current browser state - useful for debugging CI builds) survive 'mvn clean'
 <li>Fast Chrome pre-configured. Get started & work quickly.
 <li>added http header field "X-webtest" so your server knows whether the client is a webtest (e.g. to turn of conversion counting) 
 

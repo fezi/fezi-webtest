@@ -1,6 +1,7 @@
 package fzi.webtest.example
 
 import geb.Browser
+import org.openqa.selenium.Keys
 import org.testng.annotations.Test
 
 /** example how to drive geb Browser by scripting groovy.*/
@@ -12,10 +13,13 @@ class PlainGebScriptingExample {
             go "http://google.com/ncr"
             assert title == "Google"
             $("input", name: "q").value("wikipedia")
+            $("input", name: "q") << Keys.ENTER
             waitFor { title.endsWith("Google Search") }
-            def firstLink = $("li.g", 0).find("a.l")
+
+            def firstLink = $("#rso div.rc a").first()
             assert firstLink.text() == "Wikipedia"
-            // seems to work even without 'extends GebReportingTest'. makes a png and html snapshot of current tab within the configured report dir.
+
+            // makes a png and html snapshot of current tab within the configured report dir.
             report('leavingGoogle')
             firstLink.click()
             waitFor { title.startsWith("Wikipedia") }
