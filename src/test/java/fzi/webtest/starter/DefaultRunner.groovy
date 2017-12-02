@@ -4,21 +4,14 @@ import fzi.webtest.tests.MyFirstTest
 import org.testng.TestNG
 import org.testng.xml.XmlClass
 
-/** How to run tests without TestNG xml files */
+/** How to run TestNG tests from code. Might be Java code as well. */
 class DefaultRunner extends AbstractRunner {
 
-   public static void main(String[] args) {
-      //System.setProperty("against", "stage")
-
-      List<Class> classes = [
-            new XmlClass(MyFirstTest),
-      ]
-      classes.addAll([
-            new XmlClass(MyFirstTest),
-      ])
-      TestNG testNG = createTestNG(classes)
-      1.times({ testNG.run() })
-   }
+    public static void main(String[] args) {
+        List<Class> classes = [new XmlClass(MyFirstTest)]
+        TestNG testNG = createTestNG(classes)
+        1.times({ testNG.run() })
+        println 'exitCode='+testNG.exitCode.exitCode
+    }
 
 }
-
