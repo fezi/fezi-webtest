@@ -22,7 +22,7 @@ Following features where added (compared to more naked Geb projects):
 ## Requirements
 - **Google Chrome Browser**<br>
 Ubuntu did fine with Chromium as well.<br>
-You could use -Dgeb.env to setup different browsers (Firefox, headless PhontomJS), see file GebConfig. Additional setup required to do so.<br>
+You could use -Dgeb.env to setup different browsers (Firefox, headless PhantomJS), see file GebConfig. Additional setup required to do so.<br>
 If you want to use a custom Chrome installation, set environment variable CHROME_EXECUTABLE (pointing to the executable)
 
 - **Maven 3 and Java 8** <br>
