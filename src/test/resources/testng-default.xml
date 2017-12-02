@@ -5,10 +5,6 @@
 
 <suite name="DefaultSuite">
   
-  <listeners>
-    <listener class-name="fzi.webtest.config.RetryKnownExceptionFailures" />
-  </listeners>
-  
   <test name="Threadsafe">
     <classes>
       <class name="fzi.webtest.tests.MyFirstTest"/>
