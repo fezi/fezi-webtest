@@ -11,7 +11,7 @@ class DefaultRunner extends AbstractRunner {
         List<Class> classes = [new XmlClass(MyFirstTest)]
         TestNG testNG = createTestNG(classes)
         1.times({ testNG.run() })
-        println 'exitCode='+testNG.exitCode.exitCode
+        println 'exitCode=' + testNG.exitCode.exitCode
     }
 
 }

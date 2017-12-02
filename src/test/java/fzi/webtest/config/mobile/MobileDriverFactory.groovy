@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver
 
 class MobileDriverFactory implements DriverFactory {
 
-   @Override
-   public WebDriver getDriver() {
-      return ChromeDriverHelper.chromeMobileDriver.get()
-   }
+    @Override
+    public WebDriver getDriver() {
+        return ChromeDriverHelper.chromeMobileDriver.get()
+    }
 }

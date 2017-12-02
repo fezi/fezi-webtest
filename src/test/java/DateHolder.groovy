@@ -1,3 +1,3 @@
 abstract class DateHolder {
-   static Date date = new Date()
+    static Date date = new Date()
 }

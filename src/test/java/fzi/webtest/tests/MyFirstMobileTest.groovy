@@ -9,15 +9,15 @@ import org.testng.annotations.Test
 
 class MyFirstMobileTest implements GebReportingTestTrait {
 
-   @Override
-   public Configuration createConf() {
-      new MobileConfigurationLoader(gebConfEnv).getConf(gebConfScript)
-   }
+    @Override
+    public Configuration createConf() {
+        new MobileConfigurationLoader(gebConfEnv).getConf(gebConfScript)
+    }
 
-   @Test
-   void firstTest() {
-      MyFirstPage page = browser.to MyFirstPage
-      assert page.myElement.displayed
-   }
+    @Test
+    void firstTest() {
+        MyFirstPage page = browser.to MyFirstPage
+        assert page.myElement.displayed
+    }
 
 }

@@ -5,7 +5,7 @@ import geb.Page
 
 class AtAlwaysFalsePage extends Page {
 
-   static url = '/'
+    static url = '/'
 
-   static at = { false }
+    static at = { false }
 }

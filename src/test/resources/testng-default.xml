@@ -4,13 +4,12 @@
 <!-- standard build. 'mvn test' uses this file. -->
 
 <suite name="DefaultSuite">
-  
-  <test name="Threadsafe">
-    <classes>
-      <class name="fzi.webtest.tests.MyFirstTest"/>
-    </classes>
-  </test>
 
-  
-  
+    <test name="Threadsafe">
+        <classes>
+            <class name="fzi.webtest.tests.MyFirstTest"/>
+        </classes>
+    </test>
+
+
 </suite>

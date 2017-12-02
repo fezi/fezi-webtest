@@ -7,16 +7,16 @@ import org.testng.xml.XmlTest
 
 public abstract class AbstractRunner {
 
-   protected static TestNG createTestNG( List<XmlClass> classes ) {
-      XmlSuite xmlSuite = new XmlSuite()
-      List<XmlSuite> suites = new ArrayList<XmlSuite>()
-      suites.add(xmlSuite)
+    protected static TestNG createTestNG(List<XmlClass> classes) {
+        XmlSuite xmlSuite = new XmlSuite()
+        List<XmlSuite> suites = new ArrayList<XmlSuite>()
+        suites.add(xmlSuite)
 
-      XmlTest xmlTest = new XmlTest(xmlSuite)
-      xmlTest.setXmlClasses(classes)
+        XmlTest xmlTest = new XmlTest(xmlSuite)
+        xmlTest.setXmlClasses(classes)
 
-      TestNG testNG = new TestNG()
-      testNG.setXmlSuites(suites)
-      return testNG
-   }
+        TestNG testNG = new TestNG()
+        testNG.setXmlSuites(suites)
+        return testNG
+    }
 }

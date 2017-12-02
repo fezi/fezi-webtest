@@ -1,10 +1,9 @@
 package fzi.webtest.pages.artificial
 
 
-
 class AtAlwaysFalsePageChildWorkaround extends AtAlwaysFalsePage {
 
-   static url = '/'
+    static url = '/'
 
-   static at = { Object.at && true }
+    static at = { Object.at && true }
 }

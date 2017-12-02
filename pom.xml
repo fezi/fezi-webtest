@@ -1,189 +1,189 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <groupId>fzi</groupId>
-   <artifactId>fzi-webtest</artifactId>
-   <version>1.0-SNAPSHOT</version>
+    <groupId>fzi</groupId>
+    <artifactId>fzi-webtest</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-   <name>${project.artifactId}</name>
-   <description>Template for browser test projects. Implemtented with geb - a selenium based groovy framework.</description>
+    <name>${project.artifactId}</name>
+    <description>Template for browser test projects. Implemtented with geb - a selenium based groovy framework.
+    </description>
 
-   <properties>
-      <version.java>1.8</version.java>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <properties>
+        <version.java>1.8</version.java>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-      <version.geb>2.0</version.geb>
-      <!-- see https://github.com/SeleniumHQ/selenium/blob/master/java/CHANGELOG -->
-      <!-- choose stable/compatible firefox version wisely: https://ftp.mozilla.org/pub/firefox/releases/ -->
-      <version.selenium>3.8.0</version.selenium>
-      <version.groovy>2.4.7</version.groovy>
-      <encoding>UTF-8</encoding>
+        <version.geb>2.0</version.geb>
+        <!-- see https://github.com/SeleniumHQ/selenium/blob/master/java/CHANGELOG -->
+        <!-- choose stable/compatible firefox version wisely: https://ftp.mozilla.org/pub/firefox/releases/ -->
+        <version.selenium>3.8.0</version.selenium>
+        <version.groovy>2.4.7</version.groovy>
+        <encoding>UTF-8</encoding>
 
-      <!-- default testng file, if you don't override by using -DsuiteXmlFile=... -->
-      <suiteXmlFile>src/test/resources/testng-default.xml</suiteXmlFile>
-   </properties>
+        <!-- default testng file, if you don't override by using -DsuiteXmlFile=... -->
+        <suiteXmlFile>src/test/resources/testng-default.xml</suiteXmlFile>
+    </properties>
 
-   <dependencies>
-      <!-- Selenium -->
-      <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium-api</artifactId>
-         <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium-java</artifactId>
-         <version>${version.selenium}</version>
-      </dependency>
-    
-      <!-- Selenium Drivers -->
-      <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium-firefox-driver</artifactId>
-         <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-         <groupId>org.seleniumhq.selenium</groupId>
-         <artifactId>selenium-chrome-driver</artifactId>
-         <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-         <groupId>com.github.detro</groupId>
-         <artifactId>phantomjsdriver</artifactId>
-         <version>1.2.0</version>
-      </dependency>
-    
-    <!-- Groovy -->
-      <dependency>
-         <groupId>org.codehaus.groovy</groupId>
-         <artifactId>groovy-all</artifactId>
-         <version>${version.groovy}</version>
-      </dependency>
-    
-      <!-- Gebish -->
-      <dependency>
-         <groupId>org.gebish</groupId>
-         <artifactId>geb-core</artifactId>
-         <version>${version.geb}</version>
-      </dependency>
-    
-      <!-- TestNG integration -->
-      <dependency>
-         <groupId>org.testng</groupId>
-         <artifactId>testng</artifactId>
-         <version>6.13.1</version>
-      </dependency>
-      <dependency>
-         <groupId>org.gebish</groupId>
-         <artifactId>geb-testng</artifactId>
-         <version>${version.geb}</version>
-      </dependency>
-      <!-- undelcared dependency from geb-testng when using reporting -->
-      <dependency>
-         <groupId>com.google.inject</groupId>
-         <artifactId>guice</artifactId>
-         <version>3.0</version>
-      </dependency>
+    <dependencies>
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
 
-       <!-- JUnit dependencies
-       <dependency>
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>4.11</version>
-       </dependency>
-       <dependency>
-         <groupId>org.gebish</groupId>
-         <artifactId>geb-junit4</artifactId>
-         <version>${version.geb}</version>
-       </dependency>-->
+        <!-- Selenium Drivers -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${version.selenium}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.detro</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+            <version>1.2.0</version>
+        </dependency>
 
-   
-     <!--  Alternative to Firefox & Selenium 
-     <dependency>
-       <groupId>com.machinepublishers</groupId>
-       <artifactId>jbrowserdriver</artifactId>
-       <version>[0.7.3, 2.0)</version>
-     </dependency> -->
-     
-     <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>[3, 4)</version>
-    </dependency>
+        <!-- Groovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${version.groovy}</version>
+        </dependency>
 
-   </dependencies>
+        <!-- Gebish -->
+        <dependency>
+            <groupId>org.gebish</groupId>
+            <artifactId>geb-core</artifactId>
+            <version>${version.geb}</version>
+        </dependency>
+
+        <!-- TestNG integration -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gebish</groupId>
+            <artifactId>geb-testng</artifactId>
+            <version>${version.geb}</version>
+        </dependency>
+        <!-- undelcared dependency from geb-testng when using reporting -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <!-- JUnit dependencies
+        <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.11</version>
+        </dependency>
+        <dependency>
+          <groupId>org.gebish</groupId>
+          <artifactId>geb-junit4</artifactId>
+          <version>${version.geb}</version>
+        </dependency>-->
 
 
+        <!--  Alternative to Firefox & Selenium
+        <dependency>
+          <groupId>com.machinepublishers</groupId>
+          <artifactId>jbrowserdriver</artifactId>
+          <version>[0.7.3, 2.0)</version>
+        </dependency> -->
 
-   <build>
-      <plugins>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>[3, 4)</version>
+        </dependency>
 
-         <!-- makes maven-compiler-plugin use groovy-eclipse-compiler as seen on 
-              http://stackoverflow.com/questions/4971566/create-eclipse-groovy-java-project-with-maven  -->
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.1</version>
-            <configuration>
-               <source>${version.java}</source>
-               <target>${version.java}</target>
-               <compilerId>groovy-eclipse-compiler</compilerId>
-               <verbose>false</verbose>
-            </configuration>
-            <dependencies>
-               <dependency>
-                  <groupId>org.codehaus.groovy</groupId>
-                  <artifactId>groovy-eclipse-compiler</artifactId>
-                  <version>2.9.2-01</version>
-               </dependency>
-               <dependency>
-                  <groupId>org.codehaus.groovy</groupId>
-                  <artifactId>groovy-eclipse-batch</artifactId>
-                  <version>2.4.3-01</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-      
-         <!-- groovy project nature for IDE Eclipse -->
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-eclipse-plugin</artifactId>
-            <version>2.9</version>
-            <configuration>
-               <additionalProjectnatures>
-                  <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
-               </additionalProjectnatures>
-               <sourceIncludes>
-                  <sourceInclude>**/*.groovy</sourceInclude>
-               </sourceIncludes>
-            </configuration>
-         </plugin>
-            
-         <!-- how to execute tests -->
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.18</version>
-            <configuration>
-                <!-- parallel stuff doesn't seem to influence testng behavior 
-                <parallel>tests</parallel>
-                <forkCount>2</forkCount>
-                <threadCount>4</threadCount>
-                <forkMode>always</forkMode>-->
-               <systemPropertyVariables>
-                  <!-- you can set stuff like geb.build.reportsDir here -->
-                  <reporter.debug>false</reporter.debug>
-               </systemPropertyVariables>
-               <suiteXmlFiles>
-                  <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-               </suiteXmlFiles>
-            </configuration>
-         </plugin>
+    </dependencies>
 
-      </plugins>
-   </build>
+
+    <build>
+        <plugins>
+
+            <!-- makes maven-compiler-plugin use groovy-eclipse-compiler as seen on
+                 http://stackoverflow.com/questions/4971566/create-eclipse-groovy-java-project-with-maven  -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${version.java}</source>
+                    <target>${version.java}</target>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <verbose>false</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>2.9.2-01</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>2.4.3-01</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- groovy project nature for IDE Eclipse -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>org.eclipse.jdt.groovy.core.groovyNature</projectnature>
+                    </additionalProjectnatures>
+                    <sourceIncludes>
+                        <sourceInclude>**/*.groovy</sourceInclude>
+                    </sourceIncludes>
+                </configuration>
+            </plugin>
+
+            <!-- how to execute tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18</version>
+                <configuration>
+                    <!-- parallel stuff doesn't seem to influence testng behavior
+                    <parallel>tests</parallel>
+                    <forkCount>2</forkCount>
+                    <threadCount>4</threadCount>
+                    <forkMode>always</forkMode>-->
+                    <systemPropertyVariables>
+                        <!-- you can set stuff like geb.build.reportsDir here -->
+                        <reporter.debug>false</reporter.debug>
+                    </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
