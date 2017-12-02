@@ -1,31 +1,38 @@
 ## What is it?
-This is a Maven project template for automated browser test using Geb, a groovy and Selenium based framework.
+This is a project template for automated browser test using 
+- Geb (written in Groovy, uses Selenium)
+- Maven
+- TestNG (JUnit also possible)
 
 ## Prerequisites
-Installed Firefox <= version 45. <br>Or use -Dgeb.env to setup different browsers, see file GebConfig.
-<p>
-Use environment variable FIREFOX_EXECUTABLE if you want to point to a non-default firefox installation,
-like a separate long-time-support installation that you can get from
-<a href="https://ftp.mozilla.org/pub/firefox/releases/45.9.0esr/win64/en-US/Firefox%20Setup%2045.9.0esr.exe">here</a>.
-<br>
-It is recommended to disable its updates.
-This inconvenience is caused by Firefox new Marionette/Gecko stuff recently introduced by Mozialla and not fully/conveniently supported by Selenium until now.
+- Google Chrome Browser<br>
+You can use -Dgeb.env to setup different browsers, see file GebConfig. Not recommended for beginners.<br>
+If you want to use a custom Chrome installation, set environment variable CHROME_EXECUTABLE (pointing to the executable)
+- Maven 3 and Java 8 (should be downgrade-able as well in pom.xml) 
+We recommend IntelliJ IDEA (free community edition is sufficient) for its out-of-the-box TestNG and Maven support. Just click the green run button in an opened *Test class. Eclipse requires TestNG plugin to do so.
 
-## Usage
-Open MyFirstTest and run (as TestNG test). Or just enter 'mvn test' on command line to execute test-suite testng-default.xml.
+Nothing else!
 
-You could also use PlainGebScriptingExample to start.
-<p>
-If you didn't code in Groovy before, you might want to have a look at GroovyLearner
+If you get "could not connect to renderer" error but see an openend chrome window, you propably need to update the chrome driver (project root folder) with downloads provided at https://chromedriver.storage.googleapis.com/index.html
 
-## Start to change code
-GebConfig.baseUrl to your actual baseUrl. Geb website is pre-defined as example.
+## Execute
+Either of those:
+- Open e.g. MyFirstTest in your IDE and execute (as TestNG test)
+- Run 'mvn test' on command line. This will use TestNG suite defintion testng-default.xml
+
+## Where to start to learn
+- To learn Geb, you could look at PlainGebScriptingExample
+- To learn Groovy, you could look at GroovyLearner
+
+## Where to start to adapt (to your website)
+1. Set GebConfig.baseUrl to your actual baseUrl. Geb's homepage is pre-defined.
+1. Adapt MyFirstTest and MyFirstPage to your needs.
 
 ## Features
-Following features where added (compared to more naked geb projects):
+Following features where added (compared to more naked Geb projects):
 <li>Mixing Java 8 code with groovy is supported.
-<li>Mobile/responsive Website testing support: MyFirstMobileTest uses a UserAgent String and a window size like mobile devices.
+<li>Mobile/responsive Website testing support: MyFirstMobileTest uses a UserAgent String and a window size typical smartphones.
 
 ## Also see
-https://github.com/geb/geb-example-maven (more naked geb example)<br>
-http://gebish.org/manual/current/ (Geb doc)
+https://github.com/geb/geb-example-maven more naked geb example<br>
+http://gebish.org/manual/current/ Geb doc

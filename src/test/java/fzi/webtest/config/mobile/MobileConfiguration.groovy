@@ -3,6 +3,7 @@ package fzi.webtest.config.mobile
 import geb.BuildAdapter
 import geb.Configuration
 import geb.driver.DriverFactory
+import fzi.webtest.config.mobile.MobileDriverFactory;
 
 class MobileConfiguration extends Configuration {
 

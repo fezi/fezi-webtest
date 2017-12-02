@@ -1,6 +1,7 @@
 package fzi.webtest.util
 
 import org.openqa.selenium.Dimension
+import org.openqa.selenium.UnexpectedAlertBehaviour
 import org.openqa.selenium.WebDriver.Window
 import org.openqa.selenium.firefox.FirefoxBinary
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -39,14 +40,16 @@ public class FirefoxDriverHelper {
       DesiredCapabilities capabilities = DesiredCapabilities.firefox()
       capabilities.setCapability("marionette", true) // see http://www.theautomatedtester.co.uk/blog/2016/selenium-webdriver-and-firefox-47.html
       capabilities.setCapability(CapabilityType.OVERLAPPING_CHECK_DISABLED, true)
+      capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE)
+
       // see https://github.com/SeleniumHQ/selenium/commit/ab994066135f81b43d6ebed93bb398e7c7d064c1
 
       FirefoxBinary firefoxBinary = null
-      String firefoxExe = readPropertyInOrder("FIREFOX_EXECUTABLE", null)
-      if (firefoxExe != null && !firefoxExe.isEmpty()) {
-         firefoxBinary = new FirefoxBinary(new File(firefoxExe))
+      String executable = readPropertyInOrder("FIREFOX_EXECUTABLE", null)
+      if (executable != null) {
+         firefoxBinary = new FirefoxBinary(new File(executable))
+         println 'using executable: '+executable
       }
-      // else: works until Firefox 45 (or 46?) that you need to have installed
 
       FirefoxDriver firefoxDriver = new FirefoxDriver(firefoxBinary, newFirefoxProfile(isMobile), capabilities)
 
@@ -63,7 +66,7 @@ public class FirefoxDriverHelper {
             window.setSize(new Dimension(window.getSize().width, 1200))
          }
       }
-      firefoxDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
+      //firefoxDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS)
       firefoxDriver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS)
 
       return firefoxDriver
@@ -90,7 +93,7 @@ public class FirefoxDriverHelper {
       String directly = "text/csv,text/x-comma-separated-values,text/comma-separated-values,Application/csv,application/xml,text/xml,application/vnd.ms-excel"
       fp.setPreference("browser.helperApps.neverAsk.saveToDisk", directly)
       if (isMobile) {
-         fp.setPreference("general.useragent.override", "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1")
+         fp.setPreference("general.useragent.override", Constants.USER_AGENT_MOBILE)
       }
 
       fp.setAcceptUntrustedCertificates(true)
@@ -98,7 +101,7 @@ public class FirefoxDriverHelper {
       if (!'jenkins'.equals(System.getenv('EXECUTOR'))) {
          installFirebugPlugin(fp)
       }
-      installModifyHeadersPlugin(fp)
+      installAndConfigureModifyHeadersPlugin(fp)
       return fp
    }
 
@@ -120,21 +123,29 @@ public class FirefoxDriverHelper {
       }
    }
 
-   static void installModifyHeadersPlugin(FirefoxProfile firefoxProfile) {
+   static void installAndConfigureModifyHeadersPlugin(FirefoxProfile firefoxProfile) {
       URL fileUrl = ClassLoader.getResource("/xpi/modify_headers-0.7.1.1-fx.xpi")
       if (fileUrl) {
          File file = new File(fileUrl.toURI())
          firefoxProfile.addExtension(file)
-         firefoxProfile.setPreference("modifyheaders.headers.count", 1);
-         firefoxProfile.setPreference("modifyheaders.headers.action0", "Add");
-         firefoxProfile.setPreference("modifyheaders.headers.name0", "noconversion");
-         firefoxProfile.setPreference("modifyheaders.headers.value0", "1"); // could be any
-         firefoxProfile.setPreference("modifyheaders.headers.enabled0", true);
-         firefoxProfile.setPreference("modifyheaders.config.active", true);
-         firefoxProfile.setPreference("modifyheaders.config.alwaysOn", true);
+
+         setHttpHeader(firefoxProfile, "noconversion")
+         setHttpHeader(firefoxProfile, "webtest")
+
+         firefoxProfile.setPreference("modifyheaders.config.active", true)
+         firefoxProfile.setPreference("modifyheaders.config.alwaysOn", true)
+
       } else {
          println "ERROR: MODIFY-HEADER XPI FILE NOT FOUND"
       }
+   }
+
+   private static void setHttpHeader(FirefoxProfile firefoxProfile, String name) {
+      firefoxProfile.setPreference("modifyheaders.headers.count", 2)
+      firefoxProfile.setPreference("modifyheaders.headers.action0", "Add")
+      firefoxProfile.setPreference("modifyheaders.headers.name0", name)
+      firefoxProfile.setPreference("modifyheaders.headers.value0", "1") // parametrize if needed
+      firefoxProfile.setPreference("modifyheaders.headers.enabled0", true)
    }
 
 /**

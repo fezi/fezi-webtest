@@ -1,13 +1,13 @@
-import java.text.SimpleDateFormat
-
+import fzi.webtest.util.ChromeDriverHelper
+import fzi.webtest.util.Constants
+import fzi.webtest.util.FirefoxDriverHelper
 import org.openqa.selenium.Dimension
-import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.edge.EdgeDriver
 import org.openqa.selenium.ie.InternetExplorerDriver
 import org.openqa.selenium.phantomjs.PhantomJSDriver
 import org.openqa.selenium.remote.DesiredCapabilities
 
-import fzi.webtest.util.FirefoxDriverHelper
+import java.text.SimpleDateFormat
 
 
 // @see http://www.gebish.org/manual/0.9.2/configuration.html
@@ -43,23 +43,15 @@ atCheckWaiting = false
 
 // choose by -Dgeb.env=... You can enumerate several separated by space
 environments {
-   // -- BROWSERS: Only firefox was tested
-
-   // needs a system property 'webdriver.chrome.driver' pointing to chrome executable
-   chrome {
-      driver = {
-         final chromeDriver = new ChromeDriver()
-         chromeDriver.location
-         chromeDriver.manage().window().maximize()
-         return chromeDriver
-      }
-   }
-
-   // a Safari / WebKit based, headless browser. much better than htmlunit, but needs a system prop 'phantomjs.binary.path' pointing to a phantomjs executable (as chrome and most other browsers)
+   // a Safari / WebKit based, headless browser. much better than htmlunit, but needs a system property 'phantomjs.binary.path' pointing to a phantomjs executable, or have it on PATH
    phantomjs {
       driver = {
          final capabilities = new DesiredCapabilities()
-         capabilities.setCapability('phantomjs.page.settings.userAgent', 'Mozilla/5.0; rv:17.0) Gecko/20100101 Firefox/17.0 Webdriver')
+         capabilities.setCapability('phantomjs.page.settings.userAgent', Constants.USER_AGENT_DESKTOP)
+         // work in progress. click event not available yet
+         capabilities.setCapability('webSecurityEnabled', false)
+         capabilities.setCapability('acceptSslCerts', true)
+         capabilities.setCapability('localToRemoteUrlAccessEnabled', true)
          final phantomJSDriver = new PhantomJSDriver(capabilities)
          phantomJSDriver.manage().window().setSize(new Dimension(1800, 1100))
          return phantomJSDriver
@@ -67,11 +59,10 @@ environments {
    }
    ie { driver = { new InternetExplorerDriver() } }
    edge { driver = { new EdgeDriver() } }
+   chrome { driver = { ChromeDriverHelper.chromeDriver.get() } }
+   firefox { driver = { FirefoxDriverHelper.firefoxDriver.get() } }
 }
-
-// firefox works well and is the default driver no environment is given (by e.g -Dgeb.env=chrome)
-// use FIREFOX_EXECUTABLE to point to a particular firefox driver compatible executable
-
-driver = { FirefoxDriverHelper.firefoxDriver.get() }
+// default driver if no environment is given (by e.g -Dgeb.env=firefox)
+driver = { ChromeDriverHelper.chromeDriver.get() }
 
 
