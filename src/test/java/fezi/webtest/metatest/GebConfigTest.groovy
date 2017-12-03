@@ -1,18 +1,20 @@
 package fezi.webtest.metatest
 
+import fezi.webtest.pages.MyFirstPage
 import fezi.webtest.pages.artificial.AtAlwaysFalsePage
 import fezi.webtest.pages.artificial.AtAlwaysFalsePageChild
 import fezi.webtest.pages.artificial.AtAlwaysFalsePageChildWorkaround
 import fezi.webtest.pages.artificial.BadContentPage
 import geb.error.RequiredPageContentNotPresent
+import geb.testng.GebTestTrait
 import org.testng.Assert
 import org.testng.annotations.Test
 
-class GebConfigTest {
+class GebConfigTest implements GebTestTrait {
 
     @Test(priority = 10)
-    void isImplicitAssertionsGebFeatureTurnedOff() {
-        1 == 2 // will throw if implicit assertions are on, according to geb docu ...
+    void implicitAssertionsIsTurnedOff() {
+        1 == 2 // would throw if implicit assertions are on, according to geb documentation
     }
 
     @Test
@@ -25,15 +27,9 @@ class GebConfigTest {
         }
         Assert.fail("'to check' is supposed to throw")
     }
-//
-//   @Test(expectedExceptions = Throwable.class) // AssertionError was not reliable
-//   void atMethodBehavior() {
-//      browser.to MyFirstPage
-//      browser.at HomePage // implicit assertions related error
-//   }
 
     @Test
-    void toMethodBehaviorChild() {
+    void toMethodBehavior_child() {
         browser.to AtAlwaysFalsePageChild
     }
 
@@ -86,7 +82,7 @@ class GebConfigTest {
     }
 
     @Test
-    void toMethodBehaviorChildWorkaround() {
+    void toMethodBehavior_childWorkaround() {
         try {
             browser.to AtAlwaysFalsePageChildWorkaround
         } catch (Throwable e) {
@@ -96,10 +92,10 @@ class GebConfigTest {
     }
 
     @Test(priority = 20)
-    void alwaysFalsePageNoFalsePositiveIsAt() {
-        browser.to InfoLandingPage
+    void alwaysFalsePageDeliversNoFalsePositiveAt() {
+        browser.to MyFirstPage
         try {
-            waitFor QUICK, { browser.at AtAlwaysFalsePage }
+            browser.waitFor 3.0, { browser.at AtAlwaysFalsePage }
         } catch (Throwable e) {
             return
         }
