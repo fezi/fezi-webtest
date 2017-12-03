@@ -25,8 +25,9 @@ Ubuntu did fine with Chromium as well.<br>
 You could use -Dgeb.env to setup different browsers (Firefox, headless PhantomJS), see file GebConfig. Additional setup required to do so.<br>
 If you want to use a custom Chrome installation, set environment variable CHROME_EXECUTABLE (pointing to the executable)
 
-- **Maven 3 and Java 8** <br>
-Versions should be downgrade-able as well by changing pom.xml.
+- **JDK 8** <br>
+You can get it from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html <br>
+Version should be downgrade-able as well by changing pom.xml.
 We recommend IntelliJ IDEA (free community edition is sufficient) for its out-of-the-box TestNG and Maven support. And even some Geb support. Just click the green run triangle in an opened *Test class.
 
 Nothing else!
@@ -38,14 +39,14 @@ https://chromedriver.storage.googleapis.com/index.html
 ## Execute
 Either of those:
 - Open e.g. MyFirstTest in your IDE and execute (as TestNG test)
-- Run 'mvn test' on command line. This will use TestNG suite defintion testng-default.xml
+- Run 'mvn test' on command line (or 'mvnw test' if you dont have Maven installation yet). 
+This will use TestNG suite defintion testng-default.xml
 
 ## Where to start to learn
-| Tech     |  Example File              | 
-|----------|----------------------------|
-| Geb      |   PlainGebScriptingExample | 
-| Groovy   |   GroovyLearner            |   
-
+| Technology |      Example File          | 
+|------------|----------------------------|
+| Geb        |   PlainGebScriptingExample | 
+| Groovy     |   GroovyLearner            |   
 
 ## Where to start to adapt (to your website)
 1. Set GebConfig.baseUrl to your actual baseUrl. Geb's homepage is pre-defined.

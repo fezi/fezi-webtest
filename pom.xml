@@ -8,8 +8,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>${project.artifactId}</name>
-    <description>Template for browser test projects. Implemtented with geb - a selenium based groovy framework.
-    </description>
+    <description>Template for automatic browser testing using Geb. Geb is a Selenium based framework written in Groovy. See README.md for documentation.</description>
 
     <properties>
         <version.java>1.8</version.java>
@@ -51,10 +50,11 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>${version.selenium}</version>
         </dependency>
+        <!-- not really needed. only a browser alternative. -->
         <dependency>
-            <groupId>com.github.detro</groupId>
+            <groupId>com.codeborne</groupId>
             <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.0</version>
+            <version>1.4.3</version>
         </dependency>
 
         <!-- Groovy -->
