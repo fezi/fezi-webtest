@@ -2,7 +2,7 @@
 This is a project template to get you started quickly with automated browser tests using 
 - Geb (written in Groovy, uses Selenium)
 - Maven
-- TestNG (JUnit, Cucumber, Spock would work as well)
+- TestNG (JUnit, Cucumber, Spock might be used as runner, too)
 
 Latest versions as of 2017-12-02 are used. 
 
